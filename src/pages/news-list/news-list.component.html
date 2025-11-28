@@ -1,0 +1,19 @@
+<!-- ...existing code... -->
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Noticias</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item button *ngFor="let item of news" (click)="onShowNewsModal(item)">
+      {{ item.title }}
+      <ion-badge *ngIf="!item.readAt" slot="end" color="danger">No leída</ion-badge>
+    </ion-item>
+
+    <ion-item *ngIf="!showNews" class="alert-info">
+      <div class="ion-text-center">No se encontraron noticias.</div>
+    </ion-item>
+  </ion-list>
+</ion-content>

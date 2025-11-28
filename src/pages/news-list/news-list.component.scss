@@ -1,0 +1,10 @@
+page-news-list {
+    .list {
+        .item.alert-info{
+            border-bottom: none !important;
+        }
+    }
+    .new-not-read {
+        border: 2px solid red;
+    }
+}

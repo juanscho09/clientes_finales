@@ -1,0 +1,15 @@
+page-login {
+    .container-logo img {
+        height: 150px;
+    }
+
+    form {
+        .list .item {
+            padding: 0;
+        }
+
+        .list > .item-block:first-child {
+            border-top: none;
+        }
+    }
+}

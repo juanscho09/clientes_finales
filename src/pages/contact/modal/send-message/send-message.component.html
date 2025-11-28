@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="onClose()">
+        <ion-icon name="close-circle"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Enviar Consulta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-label position="stacked">Ingresá tu consulta/mensaje</ion-label>
+    <ion-textarea [(ngModel)]="emailContent"></ion-textarea>
+  </ion-item>
+
+  <ion-row class="ion-margin-top">
+    <ion-col>
+      <ion-button expand="block" (click)="sendMessage()" [disabled]="!emailContent">Enviar</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-content>

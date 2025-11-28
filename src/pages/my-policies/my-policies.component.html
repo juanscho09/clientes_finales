@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Mis pólizas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-segment [(ngModel)]="segment" (ionChange)="segmentChanged()" color="primary">
+    <ion-segment-button value="online">Online</ion-segment-button>
+    <ion-segment-button value="downloaded">Descargadas</ion-segment-button>
+  </ion-segment>
+
+  <ion-list>
+    <ion-item button *ngFor="let section of policySections" (click)="goToPolicies(section)">
+      {{ section.name }}
+    </ion-item>
+  </ion-list>
+
+  <div *ngIf="!policySections?.length" class="ion-text-center ion-padding">No se encontraron pólizas</div>
+</ion-content>

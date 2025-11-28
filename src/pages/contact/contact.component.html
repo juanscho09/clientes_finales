@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Contacto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-row>
+    <ion-col size="12">
+      <ion-button expand="block" (click)="openMessageModal()">Envianos tu consulta</ion-button>
+    </ion-col>
+  </ion-row>
+
+  <ion-list class="location">
+    <ion-list-header>
+      <ion-button fill="clear" color="light" slot="start">
+        <ion-icon name="map"></ion-icon>
+        <span>Ubicación</span>
+      </ion-button>
+    </ion-list-header>
+
+    <ion-item-group>
+      <ion-item-divider color="primary">
+        <ion-button fill="clear" color="light">Ntra Sra del Buen Viaje 1198 (1708) Moron Bs. As.</ion-button>
+      </ion-item-divider>
+
+      <ion-item>
+        <ion-button fill="clear" color="light" (click)="onCall('54306319')">
+          <ion-icon slot="start" name="call"></ion-icon> 5430 - 6319
+        </ion-button>
+      </ion-item>
+      <ion-item>
+        <ion-button fill="clear" color="light" (click)="onCall('54306320')">
+          <ion-icon slot="start" name="call"></ion-icon> 5430 - 6320
+        </ion-button>
+      </ion-item>
+      <ion-item>
+        <ion-button fill="clear" color="light" (click)="onCall('54337078')">
+          <ion-icon slot="start" name="call"></ion-icon> 5433 – 7078
+        </ion-button>
+      </ion-item>
+      <ion-item>
+        <ion-button fill="clear" color="light" (click)="onCall('54337079')">
+          <ion-icon slot="start" name="call"></ion-icon> 5433 - 7079
+        </ion-button>
+      </ion-item>
+    </ion-item-group>
+
+    <ion-item-group>
+      <ion-item-divider color="primary">
+        <ion-button fill="clear" color="light">Saavedra 107 esquina Zeballos local 7 Moreno Bs. As.</ion-button>
+      </ion-item-divider>
+      <ion-item>
+        <ion-button fill="clear" color="light" (click)="onCall('02374883670')">
+          <ion-icon slot="start" name="call"></ion-icon> 02374883670
+        </ion-button>
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header>
+      <ion-button fill="clear" color="light">
+        <ion-icon slot="start" name="mail"></ion-icon> Email
+      </ion-button>
+    </ion-list-header>
+    <ion-item>
+      <ion-button fill="clear" color="light" (click)="onEmail('info@centroatencionmoron.com')">info@centroatencionmoron.com</ion-button>
+    </ion-item>
+    <ion-item>
+      <ion-button fill="clear" color="light" (click)="onEmail('infomoreno@centroatencionmoron.com')">infomoreno@centroatencionmoron.com</ion-button>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header>
+      <ion-button fill="clear" color="light">
+        <ion-icon slot="start" name="globe"></ion-icon> Web
+      </ion-button>
+    </ion-list-header>
+    <ion-item>
+      <ion-button fill="clear" color="light" (click)="onWeb('http://www.centroatencionmoron.com')">www.centroatencionmoron.com</ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>

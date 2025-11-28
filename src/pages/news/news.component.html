@@ -1,0 +1,29 @@
+<!-- ...existing code... -->
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="onClose()">
+        <ion-icon name="close-circle"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{ !news?.isBirthdayMessage ? 'Noticia' : 'Feliz Cumpleaños!' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="news">
+    <img *ngIf="news.isBirthdayMessage && news.link" class="img" [src]="news.link" />
+    <ion-item *ngIf="!news.isBirthdayMessage">
+      <ion-row>
+        <ion-col>
+          <h1>{{ news.title }}</h1>
+        </ion-col>
+        <ion-col size="auto" class="ion-text-right">
+          <a *ngIf="news.link" [href]="news.link" target="_blank"><ion-icon name="attach"></ion-icon></a>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-card-content [innerHTML]="news.description"></ion-card-content>
+  </ion-card>
+</ion-content>

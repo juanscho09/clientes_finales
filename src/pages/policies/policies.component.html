@@ -1,0 +1,50 @@
+<!-- ...existing code... -->
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Polizas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let policy of policies; let position = index">
+    <ion-card-header class="ion-text-center">{{ policy.company }}</ion-card-header>
+    <ion-card-content>
+      <ul class="ul-no-style">
+        <li><span class="sub-title">Poliza:</span> {{ policy.name }}</li>
+        <li><span class="sub-title">Vigencia:</span> {{ policy.fromDate }} - {{ policy.toDate }}</li>
+        <li><span class="sub-title">Detalle:</span> {{ policy.detail | uppercase }}</li>
+      </ul>
+
+      <ion-grid class="acctions no-padding-side">
+        <ion-row *ngIf="policy.downloaded; else onlinePolicyActions">
+          <ion-col size="2" class="ion-text-center" (click)="onOpenPolicy(policy)">
+            <i class="fa fa-file-text-o fa-2x"></i><div>Poliza</div>
+          </ion-col>
+          <ion-col size="2" class="ion-text-center" (click)="onOpenCheckbook(policy)">
+            <i class="fa fa-credit-card fa-2x"></i><div>Chequera</div>
+          </ion-col>
+          <ion-col size="4" class="ion-text-center" (click)="onSinister(policy)">
+            <i class="fa fa-envelope fa-2x"></i><div>Siniestro</div>
+          </ion-col>
+          <ion-col size="2" class="ion-text-center" (click)="onCall(policy.phone)">
+            <i class="fa fa-phone fa-2x"></i><div>Llamar</div>
+          </ion-col>
+          <ion-col size="2" class="ion-text-center" (click)="onRemovePolicy(policy, position)">
+            <i class="fa fa-trash fa-2x"></i><div>Borrar</div>
+          </ion-col>
+        </ion-row>
+
+        <ng-template #onlinePolicyActions>
+          <ion-row>
+            <ion-col size="6" class="ion-text-center" (click)="onSinister(policy)">
+              <i class="fa fa-envelope fa-2x"></i><div>Siniestro</div>
+            </ion-col>
+            <ion-col size="6" class="ion-text-center" (click)="onDownload(policy)">
+              <i class="fa fa-download fa-2x"></i><div>Descargar</div>
+            </ion-col>
+          </ion-row>
+        </ng-template>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

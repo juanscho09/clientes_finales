@@ -1,0 +1,235 @@
+[
+    {
+        "company": "Provindencia",
+        "databaseCompany": "PROVINCIA SEGUROS",
+        "interior": [
+            {
+                "number": "0800-444-4442",
+                "numberToCall": "08004444442"
+            }
+        ],
+        "exterior": []
+    },
+    {
+        "company": "San Cristobal",
+        "databaseCompany": "SAN CRISTOBAL SEGUROS",
+        "interior": [
+            {
+                "number": "0810-222-8887",
+                "numberToCall": "08102228887"
+            },
+            {
+                "number": "0810-444-0100",
+                "numberToCall": "08104440100"
+            }
+        ],
+        "exterior": []
+    },
+    {
+        "company": "Allianz",
+        "databaseCompany": "ALLIANZ ARGENTINA COMPAÑIA DE SEGUR",
+        "interior": [
+            {
+                "number": "4320-3800",
+                "numberToCall": "43203800"  
+            },
+            {
+                "number": "0800-888-24324",
+                "numberToCall": "080088824324"  
+            },
+            {
+                "number": "0800-888-24337",
+                "numberToCall": "080088824337"
+            }
+        ],
+        "exterior": []
+    },
+    {
+        "company": "Berkley Internacional",
+        "databaseCompany": "BERKLEY INTERNATIONAL SEGUROS SA",
+        "interior": [
+            {
+                "number": "0800-555-0465",
+                "numberToCall": "08005550465"
+            },
+            {
+                "number": " 0810-555-3031",
+                "numberToCall": "08105553031"
+            }
+        ],
+        "exterior": []
+    },
+    {
+        "company": "Berkley ART",
+        "databaseCompany": "BERKLEY. ART.",
+        "interior": [
+            {
+                "number": "0800-555-0465",
+                "numberToCall": "08005550465"
+            },
+            {
+                "number": " 0810-555-3031",
+                "numberToCall": "08105553031"
+            }
+        ],
+        "exterior": []
+    },
+    {
+        "company": "Federacion Patronal S.A",
+        "databaseCompany": "FEDERACION PATRONAL SEG. S.A.",
+        "interior": [
+            {
+                "number": "0-800-800-0022",
+                "numberToCall": "08008000022"
+            }
+        ],
+        "exterior": []
+    },
+    {
+        "company": "Sura S.A.",
+        "databaseCompany": "SURA S.A.",
+        "interior": [
+            {
+                "number": "4331-1555",
+                "numberToCall": "43311555"
+            },
+            {
+                "number": "0800-666-7000 ",
+                "numberToCall": "08006667000 "
+            }
+        ],
+        "exterior": []
+    },
+    {
+        "company": "SMG Seguros",
+        "databaseCompany": "SMG COMPAÑIA ARG. DE SEGUROS",
+        "interior": [
+            {
+                "number": "0810-3333-764",
+                "numberToCall": "08103333764"
+            }
+        ],
+        "exterior": []
+    },
+    {
+        "company": "Nacion Seguros S.A.",
+        "databaseCompany": "NACION SEGUROS S.A",
+        "interior": [
+            {
+                "number": "0800-999-0123",
+                "numberToCall": "08009990123"
+            },
+            {
+                "number": "0800-333-1279",
+                "numberToCall": "08003331279"
+            },
+            {
+                "number": "0800-333-7464",
+                "numberToCall": "0800-333-7464"
+            }
+        ],
+        "exterior": []
+    },
+    {
+        "company": "Rivadavia",
+        "databaseCompany": "RIVADAVIA COOP DE SEGUROS",
+        "interior": [
+            {
+                "number": "0800-666-6789",
+                "numberToCall": "08006666789"
+            },
+            {
+                "number": "0-810-222-3456",
+                "numberToCall": "08102223456"  
+            }
+        ],
+        "exterior": []
+    },
+    {
+        "company": "Provincia Seguros",
+        "databaseCompany": "PROVINCIA SEGUROS",
+        "interior": [
+            {
+                "number": "0800-333-7000",
+                "numberToCall": "08003337000"
+            },
+            {
+                "number": "0810-222-2444",
+                "numberToCall": "08102222444"  
+            }
+        ],
+        "exterior": []
+    },
+    {
+        "company": "Caledonia",
+        "databaseCompany": "CALEDONIA ARGENTINA CIA DE SEGUROS",
+        "interior": [
+            {
+                "number": "5199-0836",
+                "numberToCall": "51990836"
+            },
+            {
+                "number": "0800-122-3334",
+                "numberToCall": "08001223334"
+            },
+            {
+                "number": "0800-122-3335",
+                "numberToCall": "08001223335"  
+            }
+        ],
+        "exterior": []
+    },
+    {
+        "company": "Mercantil Andina Seguros",
+        "databaseCompany": "MERCANTIL ANDINA SEGUROS",
+        "interior": [
+            {
+                "number": "0800-777-2634",
+                "numberToCall": "08007772634"
+            },
+            {
+                "number": "0800-888-4488",
+                "numberToCall": "08008884488"
+            },
+            {
+                "number": "0810-888-6262",
+                "numberToCall": "08108886262"  
+            }
+        ],
+        "exterior": []
+    },
+    {
+        "company": "Libra",
+        "databaseCompany": "LIBRA COMPAÑIA ARGENTINA DE SEGUROS",
+        "interior": [
+            {
+                "number": "0800-999-6500",
+                "numberToCall": "08009996500"
+            },
+            {
+                "number": "0800-888-5427",
+                "numberToCall": "08008885427"
+            }
+        ],
+        "exterior": []
+    },
+    {
+        "company": "Colon",
+        "databaseCompany": "COLON",
+        "interior": [
+            {
+                "number": "0810-123-4567",
+                "numberToCall": "08101234567"
+            },
+            {
+                "number": "1550610668",
+                "numberToCall": "1550610668"
+            },
+            {
+                "number": "1536934819",
+                "numberToCall": "1536934819"
+            }
+        ],
+        "exterior": []
+    }
+]
