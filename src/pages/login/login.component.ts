@@ -33,9 +33,9 @@ export class LoginComponent {
     private alertCtrl: AlertController,
     private platform: Platform
   ) {
-    if (this.platform.is('hybrid')) {
-      this.fileService.createFolder('policies');
-      this.fileService.createFolder('checkbooks');
+    if (this.platform.is('hybrid') || this.fileService.enableWebFilesystem) {
+      this.fileService.createFolder(this.fileService.POLICYPATH);
+      this.fileService.createFolder(this.fileService.CHECKBOOKPATH);
     }
   }
 

@@ -35,3 +35,78 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
+
+
+/* ===== Migrated styles from app.scss ===== */
+
+ion-app,
+ion-content,
+.ion-page {
+  background: #003594;
+  background: linear-gradient(-85deg, #003594, #048db2);
+}
+
+ion-content {
+  --background: linear-gradient(-85deg, #003594, #048db2);
+}
+
+.platform-ios, .ios {
+  .ios-header, ion-header {
+    height: calc(56px + 20px);
+    min-height: calc(56px + 20px);
+    padding-top: 20px;
+  }
+
+  ion-toolbar ion-title {
+    padding-top: 10px !important;
+  }
+}
+
+ion-list {
+  ion-item {
+    border-bottom: 0.55px solid rgba(0, 0, 0, 0.3);
+    --border-width: 0;
+  }
+
+  .item-block,
+  .item-inner {
+    border: none !important;
+  }
+}
+
+.item-select.input-has-value,
+.item-datetime.input-has-value {
+  border-bottom: 0.55px solid #ffffff !important;
+}
+
+ion-list .fa, .fa {
+  font-size: 1.4em;
+}
+
+/* Commons */
+.preview {
+  margin: -1px 0 0;
+
+  img {
+    height: 250px;
+    width: 100%;
+  }
+
+  .label-md { margin: 0; }
+
+  .item { border-bottom: none !important; }
+
+  .item-md.item-block .item-inner { padding-right: 0; }
+
+  ion-item-options { height: 250px; border-bottom: none !important; }
+}
+
+.picker-md .picker-wrapper { background: #014477; }
+.picker-md .picker-button { color: #ffffff; }
+
+/* Helper Class */
+.error { color: red; }
+.font-small { font-size: 0.75em; }
+.ul-no-style { list-style: none !important; margin: 0; padding: 0; }
+.no-padding-side { padding: 1em 0; }
+.custom-arrow-back { margin: -1px 0 0; display: inherit; min-width: 18px; font-size: 3.4rem; }

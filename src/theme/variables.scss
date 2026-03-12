@@ -1,111 +1,26 @@
-/* Global / migrated styles for Ionic 5+ / Angular 20 */
+:root {
+  --ion-font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
 
-/* Background gradient para todas las páginas */
-ion-app, ion-content, .ion-page {
-  /* fallback */
-  background: #003594;
-  background: linear-gradient(-85deg, #003594 0%, #048db2 100%);
+  --ion-color-primary: #048db2;
+  --ion-color-primary-rgb: 4, 141, 178;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255,255,255;
+  --ion-color-primary-shade: #047c9d;
+  --ion-color-primary-tint: #1a98ba;
+
+  --ion-color-secondary: #32db64;
+  --ion-color-secondary-rgb: 50,219,100;
+  --ion-color-secondary-contrast: #000000;
+  --ion-color-secondary-contrast-rgb: 0,0,0;
+  --ion-color-secondary-shade: #2cc158;
+  --ion-color-secondary-tint: #47df74;
+
+  --ion-color-danger: #f53d3d;
+  --ion-color-light: #f4f4f4;
+  --ion-color-dark: #222222;
+
+  /* extras que antes eran variables sass en v3 */
+  --ion-toolbar-background: transparent;
+  --ion-background-color: #0039a0;
+  --ion-text-color: #ffffff;
 }
-
-/* Si querés usar la variable nativa de ion-content */
-ion-content {
-  --background: linear-gradient(-85deg, #003594, #048db2);
-}
-
-/* iOS specific adjustments (Ionic adds .ios on body for iOS mode) */
-.platform-ios, .ios {
-  .ios-header, ion-header {
-    height: calc(56px + 20px);
-    min-height: calc(56px + 20px);
-    padding-top: 20px;
-  }
-
-  /* toolbar title vertical spacing for iOS */
-  ion-toolbar ion-title {
-    padding-top: 10px !important;
-  }
-}
-
-/* List / item adjustments: target ion-list / ion-item en lugar de clases antiguas */
-ion-list {
-  ion-item {
-    border-bottom: 0.55px solid rgba(0, 0, 0, 0.3);
-    /* remove inner borders if any shadowed styles remain */
-    --border-width: 0;
-  }
-
-  /* legacy helper selectors kept for backwards compatibility */
-  .item-block,
-  .item-inner {
-    border: none !important;
-  }
-}
-
-/* Inputs with value (migrated) */
-.item-select.input-has-value,
-.item-datetime.input-has-value {
-  border-bottom: 0.55px solid #ffffff !important;
-}
-
-/* Font-awesome */
-ion-list .fa, .fa {
-  font-size: 1.4em;
-}
-
-/* Preview / common helpers */
-.preview {
-  margin: -1px 0 0;
-
-  img {
-    height: 250px;
-    width: 100%;
-  }
-
-  .label-md { margin: 0; }
-
-  ion-item { border-bottom: none !important; }
-
-  ion-item-options { height: 250px; border-bottom: none !important; }
-}
-
-/* Picker styling */
-.picker-md .picker-wrapper { background: #014477; }
-.picker-md .picker-button { color: #ffffff; }
-
-/* Helpers */
-.error { color: red; }
-.font-small { font-size: 0.75em; }
-.ul-no-style { list-style: none !important; margin: 0; padding: 0; }
-.no-padding-side { padding: 1em 0; }
-
-/* Custom arrow/back helper */
-.custom-arrow-back {
-  margin: -1px 0 0;
-  display: inherit;
-  min-width: 18px;
-  font-size: 3.4rem;
-}
-
-/* Home / page-specific helpers (kept generic so SCSS can be global) */
-.page-home, page-home, .page-home {
-  .badge-float { position: relative; right: 2em; }
-  .col-home { padding: 1em 0 !important; }
-  .col-notif {
-    padding-left: 0 !important;
-    padding-bottom: 0 !important;
-    padding-top: 0 !important;
-    padding-right: 2em !important;
-  }
-  .sections {
-    img.icon { width: 100px; height: 120px; }
-    span { display: block; }
-  }
-  .border-top { border-top: 0.55px solid rgba(0,0,0,0.3); }
-  .border-right { border-right: 0.55px solid rgba(0,0,0,0.3); }
-  .border-bottom { border-bottom: 0.55px solid rgba(0,0,0,0.3); }
-  .welcolme { font-size: 1.1em; }
-}
-
-/* mantiene compatibilidad con selectores antiguos usados en templates migrados */
-.page-login, page-login, .page-login { /* styles específicos de login si los necesitás */ }
-.page-mechanical-assistance, page-mechanical-assistance { /* styles específicos */ }

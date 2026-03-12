@@ -41,7 +41,7 @@ export class PolicyService {
     );
   }
 
-  download(path: string, fileName: string, endpoint: string): Observable<boolean> {
+  /*download(path: string, fileName: string, endpoint: string): Observable<boolean> {
     return new Observable<boolean>(observer => {
       from(this.fileService.checkFile(path, fileName + '.pdf')).subscribe(() => {
         observer.next(false); observer.complete();
@@ -53,6 +53,40 @@ export class PolicyService {
           }, err => observer.error(err));
         }, err => observer.error(err));
       });
+    });
+  }*/
+  download(path: string, fileName: string, endpoint: string): Observable<boolean> {
+    return new Observable<boolean>(observer => {
+      from(this.fileService.checkFile(path, fileName + '.pdf'))
+        .pipe(
+          catchError(() => of(null)) // archivo no existe → seguir con descarga
+        )
+        .subscribe({
+          next: (exists) => {
+            if (exists !== false) {
+              // archivo ya existe → no descargar
+              observer.next(false);
+              observer.complete();
+              return;
+            }
+
+            // archivo NO existe → descargar
+            this.apiService.download(endpoint, fileName).subscribe({
+              next: (response: ServerResponse) => {
+                const base64 = String(response.data ?? '');
+                this.fileService.download(path, fileName + '.pdf', base64).subscribe({
+                  next: () => {
+                    observer.next(true);
+                    observer.complete();
+                  },
+                  error: (err) => observer.error(err)
+                });
+              },
+              error: (err) => observer.error(err)
+            });
+          },
+          error: (err) => observer.error(err)
+        });
     });
   }
 

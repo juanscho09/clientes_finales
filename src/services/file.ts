@@ -7,9 +7,10 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class FileService {
-  public POLICYPATH = 'policies';
-  public CHECKBOOKPATH = 'checkbooks';
+  public POLICYPATH = 'files/policies';
+  public CHECKBOOKPATH = 'files/checkbooks';
   private baseDirectory = Directory.Data;
+  public enableWebFilesystem = true;
 
   constructor(private platform: Platform) {}
 
@@ -24,7 +25,7 @@ export class FileService {
   }
 
   async createFolder(folderName: string): Promise<void> {
-    if (!this.platform.is('hybrid')) return;
+    if (!this.platform.is('hybrid') && !this.enableWebFilesystem) return;
     try {
       await Filesystem.mkdir({ path: folderName, directory: this.baseDirectory, recursive: true });
     } catch (e: any) {
@@ -35,7 +36,7 @@ export class FileService {
   download(path: string, fileName: string, base64: string): Observable<boolean> {
     return new Observable<boolean>(observer => {
       const cleanBase64: string = (base64 || '').startsWith('data:') ? (base64 as string).split(',')[1] : (base64 || '');
-      if (this.platform.is('hybrid')) {
+      if (this.platform.is('hybrid') || this.enableWebFilesystem) {
         const target = `${path}/${fileName}`.replace(/^\/+/, '');
         Filesystem.writeFile({ path: target, data: cleanBase64, directory: this.baseDirectory, encoding: Encoding.UTF8 })
           .then(() => { observer.next(true); observer.complete(); })
@@ -43,7 +44,8 @@ export class FileService {
       } else {
         try {
           const byteArray = this.toUint8ArrayFromBase64(cleanBase64);
-          const blob = new Blob([byteArray], { type: 'application/pdf' });
+          const buffer = byteArray.buffer as ArrayBuffer;
+          const blob = new Blob([buffer], { type: 'application/pdf' });
           const url = (window.URL || (window as any).webkitURL).createObjectURL(blob) as string;
           const a = document.createElement('a');
           a.href = url;
@@ -63,13 +65,14 @@ export class FileService {
 
   openFile(path: string, filename: string): Observable<boolean> {
     return new Observable<boolean>(observer => {
-      if (!this.platform.is('hybrid')) { observer.next(false); observer.complete(); return; }
+      if (!this.platform.is('hybrid') && !this.enableWebFilesystem) { observer.next(false); observer.complete(); return; }
       const target = `${path}/${filename}`.replace(/^\/+/, '');
       Filesystem.readFile({ path: target, directory: this.baseDirectory }).then(result => {
         const base64 = result.data as string;
         try {
           const byteArray = this.toUint8ArrayFromBase64(base64);
-          const blob = new Blob([byteArray], { type: 'application/pdf' });
+          const buffer = byteArray.buffer as ArrayBuffer;
+          const blob = new Blob([buffer], { type: 'application/pdf' });
           const url = (window.URL || (window as any).webkitURL).createObjectURL(blob) as string;
           Browser.open({ url }).then(() => {
             observer.next(true);
@@ -83,21 +86,33 @@ export class FileService {
   }
 
   async removeFile(path: string, fileName: string): Promise<boolean> {
-    if (!this.platform.is('hybrid')) return false;
+    if (!this.platform.is('hybrid') && !this.enableWebFilesystem) return false;
     const target = `${path}/${fileName}`.replace(/^\/+/, '');
     try { await Filesystem.deleteFile({ path: target, directory: this.baseDirectory }); return true; }
     catch { return false; }
   }
 
   async checkFile(path: string, fileName: string): Promise<boolean> {
-    if (!this.platform.is('hybrid')) return false;
-    const target = `${path}/${fileName}`.replace(/^\/+/, '');
-    try { await Filesystem.stat({ path: target, directory: this.baseDirectory }); return true; }
-    catch { return false; }
+    if (!this.platform.is('hybrid') && !this.enableWebFilesystem) return false;
+    const cleanPath = path.replace(/^\/+/, '');
+    const target = `${cleanPath}/${fileName}`.replace(/^\/+/, '');
+    try {
+      await Filesystem.stat({ path: target, directory: this.baseDirectory });
+      return true;
+    } catch (e) {
+      // Debug: listar contenido de la carpeta para ver qué existe en web
+      try {
+        const listing = await Filesystem.readdir({ path: cleanPath, directory: this.baseDirectory });
+        console.warn('[FileService.checkFile] stat failed for', target, 'listing:', listing);
+      } catch (err) {
+        console.warn('[FileService.checkFile] readdir failed for', cleanPath, err);
+      }
+      return false;
+    }
   }
 
   async removeFolder(folderName: string): Promise<void> {
-    if (!this.platform.is('hybrid')) return;
+    if (!this.platform.is('hybrid') && !this.enableWebFilesystem) return;
     try { await Filesystem.rmdir({ path: folderName, directory: this.baseDirectory, recursive: true }); } catch {}
   }
 }
