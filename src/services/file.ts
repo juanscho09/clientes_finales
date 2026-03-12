@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
 import { Browser } from '@capacitor/browser';
+import { FileOpener } from '@capacitor-community/file-opener';
 import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
@@ -67,6 +68,15 @@ export class FileService {
     return new Observable<boolean>(observer => {
       if (!this.platform.is('hybrid') && !this.enableWebFilesystem) { observer.next(false); observer.complete(); return; }
       const target = `${path}/${filename}`.replace(/^\/+/, '');
+
+      if (this.platform.is('hybrid')) {
+        Filesystem.getUri({ path: target, directory: this.baseDirectory })
+          .then(result => FileOpener.open({ filePath: result.uri, contentType: 'application/pdf' }))
+          .then(() => { observer.next(true); observer.complete(); })
+          .catch(err => observer.error(err));
+        return;
+      }
+
       Filesystem.readFile({ path: target, directory: this.baseDirectory }).then(result => {
         const base64 = result.data as string;
         try {
