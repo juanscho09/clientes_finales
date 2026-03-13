@@ -16,7 +16,7 @@
         <ion-list-header>Argentina</ion-list-header>
 
         <ion-item class="phone" *ngFor="let interior of contact.interior">
-          <ion-button fill="clear" color="light" (click)="onCall(interior.numberToCall)">
+          <ion-button fill="clear" color="primary" (click)="onCall(interior.numberToCall)">
             <ion-icon slot="start" name="call"></ion-icon>
             {{ interior.number }}
           </ion-button>
@@ -25,7 +25,7 @@
         <div *ngIf="contact.exterior?.length">
           <ion-list-header>Países limítrofes</ion-list-header>
           <ion-item class="phone" *ngFor="let exterior of contact.exterior">
-            <ion-button fill="clear" color="light" (click)="onCall(exterior.numberToCall)">
+            <ion-button fill="clear" color="primary" (click)="onCall(exterior.numberToCall)">
               <ion-icon slot="start" name="call"></ion-icon>
               {{ exterior.number }}
             </ion-button>

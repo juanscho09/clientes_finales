@@ -9,6 +9,8 @@
  * https://ionicframework.com/docs/layout/global-stylesheets
  */
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 /* Core CSS required for Ionic components to work properly */
 @import "@ionic/angular/css/core.css";
 
@@ -36,18 +38,69 @@
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
 
+/* Global design system */
+ion-app,
+ion-content {
+  font-family: var(--ion-font-family);
+}
+
+ion-content {
+  --background: var(--app-surface-alt);
+  color: var(--app-text);
+}
+
+ion-toolbar {
+  --background: var(--ion-color-primary);
+  --color: #ffffff;
+}
+
+ion-title {
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+ion-toolbar ion-button,
+ion-back-button,
+ion-toolbar ion-icon {
+  color: #ffffff;
+}
+
+ion-button {
+  text-transform: none;
+  font-weight: 600;
+}
+
+ion-card {
+  background: var(--app-surface);
+  border-radius: var(--app-radius);
+  box-shadow: var(--app-shadow);
+}
+
+ion-card-title {
+  color: var(--app-text);
+}
+
+ion-list-header {
+  color: var(--app-text-muted);
+  font-weight: 600;
+}
+
+ion-item,
+ion-label {
+  color: var(--app-text);
+}
+
 
 /* ===== Migrated styles from app.scss ===== */
 
 ion-app,
-ion-content,
 .ion-page {
-  background: #003594;
-  background: linear-gradient(-85deg, #003594, #048db2);
+  background: var(--app-bg-gradient);
 }
 
 ion-content {
-  --background: linear-gradient(-85deg, #003594, #048db2);
+  --background: var(--app-bg-gradient);
+  color: #ffffff;
 }
 
 .platform-ios, .ios {
@@ -62,16 +115,65 @@ ion-content {
   }
 }
 
+ion-header ion-toolbar,
+ion-toolbar {
+  --background: transparent;
+  --border-width: 0;
+  color: #ffffff;
+}
+
+ion-title {
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+ion-card {
+  background: var(--app-surface);
+  color: var(--app-text);
+  box-shadow: var(--app-shadow);
+  border-radius: var(--app-radius);
+}
+
+ion-card-title,
+ion-card-header,
+ion-card-content,
+ion-label,
+h1, h2, h3, h4, h5, h6 {
+  color: var(--app-text);
+}
+
 ion-list {
+  background: transparent;
+
   ion-item {
-    border-bottom: 0.55px solid rgba(0, 0, 0, 0.3);
-    --border-width: 0;
+    --background: rgba(255, 255, 255, 0.92);
+    --border-radius: var(--app-radius-sm);
+    margin: 8px 12px;
+    box-shadow: 0 6px 16px rgba(7, 35, 73, 0.1);
+    --min-height: 52px;
   }
 
   .item-block,
   .item-inner {
     border: none !important;
   }
+}
+
+ion-item-divider {
+  --background: rgba(255, 255, 255, 0.92);
+  color: var(--app-text);
+}
+
+ion-button {
+  --border-radius: 14px;
+  text-transform: none;
+  font-weight: 600;
+}
+
+ion-badge {
+  --padding-start: 6px;
+  --padding-end: 6px;
+  border-radius: 999px;
 }
 
 .item-select.input-has-value,
@@ -101,11 +203,11 @@ ion-list .fa, .fa {
   ion-item-options { height: 250px; border-bottom: none !important; }
 }
 
-.picker-md .picker-wrapper { background: #014477; }
+.picker-md .picker-wrapper { background: #0b3b6f; }
 .picker-md .picker-button { color: #ffffff; }
 
 /* Helper Class */
-.error { color: red; }
+.error { color: #ff5a5f; }
 .font-small { font-size: 0.75em; }
 .ul-no-style { list-style: none !important; margin: 0; padding: 0; }
 .no-padding-side { padding: 1em 0; }

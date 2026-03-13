@@ -10,10 +10,27 @@ import { Observable } from 'rxjs';
 export class FileService {
   public POLICYPATH = 'files/policies';
   public CHECKBOOKPATH = 'files/checkbooks';
+  public ROOTPATH = '';
   private baseDirectory = Directory.Data;
   public enableWebFilesystem = true;
 
   constructor(private platform: Platform) {}
+
+  initPaths() {
+    // En Capacitor no se usan rutas absolutas. Se define el directorio base.
+    if (this.platform.is('ios')) {
+      this.baseDirectory = Directory.Documents;
+    } else if (this.platform.is('android')) {
+      this.baseDirectory = Directory.Data;
+    } else {
+      this.baseDirectory = Directory.Data;
+    }
+
+    // Paths relativos (sin root absoluta)
+    this.ROOTPATH = '';
+    this.POLICYPATH = 'files/policies';
+    this.CHECKBOOKPATH = 'files/checkbooks';
+  }
 
   private toUint8ArrayFromBase64(base64: string): Uint8Array {
     const binary = atob(base64);

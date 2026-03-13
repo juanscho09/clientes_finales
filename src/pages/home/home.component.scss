@@ -1,41 +1,52 @@
-page-home {
-    .badge-float {
-        position: relative;
-        right: 2em;
-    }
-  .col-home {
-    padding: 1em 0 !important;
+:host {
+  ion-content {
+    --padding-top: 12px;
   }
-    .col-notif {
-        padding-left: 0px !important;
-        padding-bottom: 0px !important;
-        padding-top: 0px !important;
-        padding-right: 2em !important;
-    }
+
   .sections {
+    padding: 12px;
+    gap: 12px;
+
     img.icon {
-      width: 100px;
-      height: 120px;
+      width: 64px;
+      height: 64px;
+      object-fit: contain;
     }
 
     span {
       display: block;
+      margin-top: 6px;
+      font-weight: 600;
+      color: #ffffff;
     }
   }
 
-  .border-top {
-    border-top: 0.55px solid rgba(0, 0, 0, 0.3);
+  ion-content .inner-scroll .col-home span {
+    color: #ffffff !important;
   }
 
-  .border-right {
-    border-right: 0.55px solid rgba(0, 0, 0, 0.3);
+  .col-home {
+    background: var(--ion-color-primary);
+    border-radius: var(--app-radius);
+    padding: 16px 8px !important;
+    box-shadow: var(--app-shadow);
   }
 
+  .border-top,
+  .border-right,
   .border-bottom {
-    border-bottom: 0.55px solid rgba(0, 0, 0, 0.3);
+    border: none !important;
   }
 
-  .welcolme {
-    font-size: 1.1em;
+  .welcome {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #ffffff;
+    background: var(--ion-color-primary);
+    border-radius: var(--app-radius);
+    margin-top: 12px;
+    padding: 14px 12px;
+    box-shadow: var(--app-shadow);
   }
+
 }

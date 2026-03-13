@@ -1,10 +1,32 @@
-page-contact {
+:host {
+    ion-content {
+        --padding-top: 12px;
+    }
+
+    .location ion-item-divider,
+    .location ion-item {
+        --background: rgba(255, 255, 255, 0.95);
+    }
+
+    ion-button {
+        text-transform: none;
+        color: var(--ion-color-dark);
+    }
+
+    ion-list-header,
+    ion-item-divider,
+    ion-item {
+        color: var(--ion-color-dark);
+    }
+
     .location {
-        .item-block  .button-inner {
-            font-size: 1.3em;
+        .item-block .button-inner {
+            font-size: 1.05em;
         }
     }
-    .list-md .item[no-lines], .list-md .item[no-lines] .item-inner {
+
+    .list-md .item[no-lines],
+    .list-md .item[no-lines] .item-inner {
         border: 0px !important;
     }
 }

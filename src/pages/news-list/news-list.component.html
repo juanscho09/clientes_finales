@@ -1,13 +1,16 @@
 <!-- ...existing code... -->
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
     <ion-title>Noticias</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <ion-item button *ngFor="let item of news" (click)="onShowNewsModal(item)">
+    <ion-item button *ngFor="let item of news" (click)="onShowNewsModal(item)" [class.new-not-read]="!item.readAt">
       {{ item.title }}
       <ion-badge *ngIf="!item.readAt" slot="end" color="danger">No leída</ion-badge>
     </ion-item>

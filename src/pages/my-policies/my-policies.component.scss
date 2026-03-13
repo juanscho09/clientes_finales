@@ -1,5 +1,16 @@
-page-my-policies {
-    .segment-button {
-        color: #FFFFFF !important;
+:host {
+    ion-segment {
+        --background: #ffffff;
+        border-radius: var(--app-radius-sm);
+        padding: 6px;
+        box-shadow: var(--app-shadow);
+    }
+
+    ion-segment-button {
+        --color: var(--app-text);
+        --color-checked: #ffffff;
+        --indicator-color: var(--ion-color-primary);
+        font-weight: 600;
+        border-radius: 10px;
     }
 }
