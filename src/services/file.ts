@@ -37,9 +37,13 @@ export class FileService {
   download(path: string, fileName: string, base64: string): Observable<boolean> {
     return new Observable<boolean>(observer => {
       const cleanBase64: string = (base64 || '').startsWith('data:') ? (base64 as string).split(',')[1] : (base64 || '');
+      if (!cleanBase64) {
+        observer.error(new Error('Base64 vacío'));
+        return;
+      }
       if (this.platform.is('hybrid') || this.enableWebFilesystem) {
         const target = `${path}/${fileName}`.replace(/^\/+/, '');
-        Filesystem.writeFile({ path: target, data: cleanBase64, directory: this.baseDirectory, encoding: Encoding.UTF8 })
+        Filesystem.writeFile({ path: target, data: cleanBase64, directory: this.baseDirectory })
           .then(() => { observer.next(true); observer.complete(); })
           .catch(err => observer.error(err));
       } else {
