@@ -4,15 +4,15 @@ import { Router } from '@angular/router';
 
 import { StatusBar } from '@awesome-cordova-plugins/status-bar/ngx';
 import { SplashScreen } from '@awesome-cordova-plugins/splash-screen/ngx';
-import { Push, PushObject, PushOptions } from '@awesome-cordova-plugins/push/ngx';
 import { Badge } from '@awesome-cordova-plugins/badge/ngx';
+
+import { PushNotifications } from '@capacitor/push-notifications';
 
 import { AuthService } from '../services/auth';
 import { FileService } from '../services/file';
 import { ApiService } from '../services/api';
 import { UserRepository } from '../repositories/user.repository';
 import { NewsComponent } from '../pages/news/news.component';
-
 
 @Component({
   selector: 'app-root',
@@ -27,7 +27,6 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private alertCtrl: AlertController,
     private modalCtrl: ModalController,
-    private push: Push,
     private apiService: ApiService,
     private authService: AuthService,
     private fileService: FileService,
@@ -43,7 +42,7 @@ export class AppComponent {
     this.statusBar.styleDefault();
 
     if (this.platform.is('hybrid')) {
-      this.initPushNotification();
+      await this.initPushNotification();
       this.fileService.initPaths();
       this.splashScreen.hide();
     }
@@ -52,38 +51,56 @@ export class AppComponent {
     await this.router.navigateByUrl(isLogged ? '/home' : '/login', { replaceUrl: true });
   }
 
-  private initPushNotification() {
-    const options: PushOptions = {
-      android: { senderID: '661117763569', icon: 'cam' },
-      ios: { alert: 'true', badge: 'true', sound: 'true' }
-    };
+  private async initPushNotification() {
 
-    const pushObject: PushObject = this.push.init(options);
+    console.log('Init push Capacitor...');
 
-    pushObject.on('registration').subscribe((data: any) => {
-      console.log('✅ REGISTRATION OK:', data);
+    const permission = await PushNotifications.requestPermissions();
+
+    if (permission.receive !== 'granted') {
+      console.log('Permiso de push denegado');
+      return;
+    }
+
+    await PushNotifications.register();
+
+    // ✅ TOKEN (ANTES: registration)
+    PushNotifications.addListener('registration', (token) => {
+      console.log('✅ TOKEN:', token.value);
+
       const device = {
-        token: data.registrationId,
+        token: token.value,
         platform: this.getDevicePlatform()
       };
+
       this.userRepository.setDevice(device);
     });
 
-    pushObject.on('notification').subscribe((data: any) => {
-      console.log('📩 NOTIFICATION:', data);
-      this.apiService.cantNews = this.apiService.cantNews + 1;
-      this.apiService.newNotification.emit(this.apiService.cantNews);
-
-      if (data?.additionalData?.foreground) {
-        this.badge.increase(1).catch(() => {});
-        this.onConfirmNotification(data.additionalData);
-      } else {
-        this.showNewsModal(data?.additionalData?.newsId);
-      }
+    // ❌ ERROR
+    PushNotifications.addListener('registrationError', (error) => {
+      console.error('❌ PUSH ERROR:', error);
     });
 
-    pushObject.on('error').subscribe((error: any) => {
-      console.error('Error with Push plugin', error);
+    // 📩 NOTIFICACIÓN EN FOREGROUND
+    PushNotifications.addListener('pushNotificationReceived', (notification) => {
+      console.log('📩 FOREGROUND:', notification);
+
+      const data: any = notification.data;
+
+      this.apiService.cantNews++;
+      this.apiService.newNotification.emit(this.apiService.cantNews);
+
+      this.badge.increase(1).catch(() => {});
+      this.onConfirmNotification(data);
+    });
+
+    // 👆 CLICK EN NOTIFICACIÓN (BACKGROUND)
+    PushNotifications.addListener('pushNotificationActionPerformed', (notification) => {
+      console.log('👆 CLICK:', notification);
+
+      const data: any = notification.notification.data;
+
+      this.showNewsModal(data?.newsId);
     });
   }
 
