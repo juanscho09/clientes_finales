@@ -19,6 +19,10 @@ const routes: Routes = [
     loadComponent: () => import('../pages/news-list/news-list.component').then(m => m.NewsListComponent)
   },
   {
+    path: 'notifications',
+    loadComponent: () => import('../pages/news-list/news-list.component').then(m => m.NewsListComponent)
+  },
+  {
     path: 'mechanical-assistance',
     loadComponent: () => import('../pages/mechanical-assistance/mechanical-assistance.component').then(m => m.MechanicalAssistanceComponent)
   },
