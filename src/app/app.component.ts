@@ -42,11 +42,11 @@ export class AppComponent {
     await this.platform.ready();
     this.statusBar.styleDefault();
 
-    //if (this.platform.is('hybrid')) {
+    if (this.platform.is('hybrid')) {
       this.initPushNotification();
       this.fileService.initPaths();
       this.splashScreen.hide();
-    //}
+    }
 
     const isLogged = await this.authService.isLoged();
     await this.router.navigateByUrl(isLogged ? '/home' : '/login', { replaceUrl: true });
@@ -54,13 +54,14 @@ export class AppComponent {
 
   private initPushNotification() {
     const options: PushOptions = {
-      android: { senderID: '867223654768', icon: 'cam' },
+      android: { senderID: '661117763569', icon: 'cam' },
       ios: { alert: 'true', badge: 'true', sound: 'true' }
     };
 
     const pushObject: PushObject = this.push.init(options);
 
     pushObject.on('registration').subscribe((data: any) => {
+      console.log('✅ REGISTRATION OK:', data);
       const device = {
         token: data.registrationId,
         platform: this.getDevicePlatform()
@@ -69,6 +70,7 @@ export class AppComponent {
     });
 
     pushObject.on('notification').subscribe((data: any) => {
+      console.log('📩 NOTIFICATION:', data);
       this.apiService.cantNews = this.apiService.cantNews + 1;
       this.apiService.newNotification.emit(this.apiService.cantNews);
 
