@@ -8,7 +8,6 @@ import { CallNumber } from '@awesome-cordova-plugins/call-number/ngx';
 import { StatusBar } from '@awesome-cordova-plugins/status-bar/ngx';
 import { EmailComposer } from '@awesome-cordova-plugins/email-composer/ngx';
 import { SplashScreen } from '@awesome-cordova-plugins/splash-screen/ngx';
-import { Push } from '@awesome-cordova-plugins/push/ngx';
 import { Badge } from '@awesome-cordova-plugins/badge/ngx';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
@@ -19,7 +18,7 @@ import { AppRoutingModule } from './app-routing.module';
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot(), HttpClientModule, IonicStorageModule.forRoot(), AppRoutingModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, ENV, CallNumber, EmailComposer, StatusBar, SplashScreen, Push, Badge],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, ENV, CallNumber, EmailComposer, StatusBar, SplashScreen, Badge],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
