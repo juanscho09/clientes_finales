@@ -117,11 +117,33 @@ export class PolicyService {
   }
 
   openPolicy(fileName: string): Observable<boolean> {
-    return this.fileService.openFile(this.fileService.POLICYPATH, fileName);
+    return new Observable<boolean>(observer => {
+      this.fileService.openFile(this.fileService.POLICYPATH, fileName).subscribe({
+        next: (ok: boolean) => {
+          observer.next(ok);
+          observer.complete();
+        },
+        error: () => {
+          observer.next(false);
+          observer.complete();
+        }
+      });
+    });
   }
 
   openCheckbook(fileName: string): Observable<boolean> {
-    return this.fileService.openFile(this.fileService.CHECKBOOKPATH, fileName);
+    return new Observable<boolean>(observer => {
+      this.fileService.openFile(this.fileService.CHECKBOOKPATH, fileName).subscribe({
+        next: (ok: boolean) => {
+          observer.next(ok);
+          observer.complete();
+        },
+        error: () => {
+          observer.next(false);
+          observer.complete();
+        }
+      });
+    });
   }
 
   getWithSections(status: string): Observable<Section[]> {

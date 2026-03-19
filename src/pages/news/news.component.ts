@@ -1,6 +1,6 @@
 // ...existing code...
 import { Component, Input } from '@angular/core';
-import { IonicModule, ModalController } from '@ionic/angular';
+import { IonicModule, ModalController, NavController } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { News } from '../../models/news.model';
 
@@ -13,9 +13,19 @@ import { News } from '../../models/news.model';
 export class NewsComponent {
   @Input() news!: News;
 
-  constructor(private modalCtrl: ModalController) {}
+  constructor(private modalCtrl: ModalController,
+              private navCtrl: NavController) {}
 
-  onClose() {
-    this.modalCtrl.dismiss();
+  async onBack() {
+    const topModal = await this.modalCtrl.getTop();
+    if (topModal) {
+      await this.modalCtrl.dismiss();
+      return;
+    }
+    this.navCtrl.back();
+  }
+
+  async onClose() {
+    await this.onBack();
   }
 }
