@@ -38,6 +38,7 @@
     "@ionic/angular": "^8.0.0",
     "@ionic/storage-angular": "^4.0.0",
     "call-number": "^1.0.1",
+    "cordova-plugin-email-composer": "^0.10.1",
     "ionicons": "^7.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
