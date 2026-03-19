@@ -2,6 +2,12 @@
   <ion-toolbar>
     <ion-title>Centro Atención Morón</ion-title>
   </ion-toolbar>
+  <ion-toolbar class="welcome-toolbar">
+    <div class="welcome-banner" style="margin-left: 1.5em;">
+      <span class="welcome-label">Bienvenido/a &nbsp;</span>
+      <span class="welcome-name">{{ currentUser?.name }}</span>
+    </div>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
@@ -46,10 +52,5 @@
       </ion-col>
     </ion-row>
 
-    <ion-row>
-      <ion-col size="12" class="col-home ion-text-center welcome">
-        Bienvenido/a {{ currentUser?.name }}
-      </ion-col>
-    </ion-row>
   </ion-grid>
 </ion-content>

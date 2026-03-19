@@ -1,4 +1,48 @@
 :host {
+  ion-header ion-toolbar {
+    --background: var(--ion-color-primary);
+    --color: #ffffff;
+  }
+
+  .welcome-toolbar {
+    --min-height: 84px;
+  }
+
+  .welcome-banner {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center !important;
+    color: #ffffff !important;
+    padding: 6px 14px 10px;
+    line-height: 1.2;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .welcome-banner,
+  .welcome-banner * {
+    color: #ffffff !important;
+    text-align: center !important;
+  }
+
+  .welcome-label {
+    display: block;
+    font-size: 1.05rem;
+    font-weight: 700;
+  }
+
+  .welcome-name {
+    display: block;
+    margin-top: 4px;
+    font-size: 1.35rem;
+    font-weight: 800;
+    max-width: 100%;
+  }
+
   ion-content {
     --padding-top: 12px;
   }
@@ -47,15 +91,14 @@
     border: none !important;
   }
 
-  .welcome {
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: #ffffff;
-    background: var(--ion-color-primary);
-    border-radius: var(--app-radius);
-    margin-top: 12px;
-    padding: 14px 12px;
-    box-shadow: var(--app-shadow);
+  @media (max-width: 420px) {
+    .welcome-label {
+      font-size: 0.95rem;
+    }
+
+    .welcome-name {
+      font-size: 1.15rem;
+    }
   }
 
 }
