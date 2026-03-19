@@ -8,81 +8,103 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-row>
-    <ion-col size="12">
-      <ion-button expand="block" (click)="openMessageModal()">Envianos tu consulta</ion-button>
-    </ion-col>
-  </ion-row>
+  <ion-button class="contact-cta" expand="block" (click)="openMessageModal()">
+    Envíanos tu consulta
+  </ion-button>
 
-  <ion-list class="location">
-    <ion-list-header>
-      <ion-button fill="clear" color="primary" slot="start">
-        <ion-icon name="map"></ion-icon>
-        <span>Ubicación</span>
-      </ion-button>
-    </ion-list-header>
+  <section class="contact-section">
+    <ion-card class="office-card">
+      <ion-card-header>
+        <ion-card-title class="title-with-icon">
+          <ion-icon name="map"></ion-icon>
+          <span>Sede Morón</span>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p class="office-address">Gral. Bartolomé Mitre 1092, esquina Caasullo, Morón, Bs. As. (Estacionamiento exclusivo para clientes, entrada Casullo 408)</p>
+        <ion-list lines="none" class="phones-list">
+          <ion-item>
+            <ion-button fill="clear" color="primary" (click)="onCall('01144833866')">
+              <ion-icon slot="start" name="call"></ion-icon> (011) 4483-3866
+            </ion-button>
+          </ion-item>
+          <ion-item>
+            <ion-button fill="clear" color="primary" (click)="onCall('01144935582')">
+              <ion-icon slot="start" name="call"></ion-icon> (011) 4493-5582
+            </ion-button>
+          </ion-item>
+          <ion-item>
+            <ion-button fill="clear" color="primary" (click)="onCall('01146288392')">
+              <ion-icon slot="start" name="call"></ion-icon> (011) 4628–8392
+            </ion-button>
+          </ion-item>
+          <ion-item class="sinister-line">
+            <ion-button fill="clear" color="danger" (click)="onCall('01152630956')">
+              <div class="stacked-entry stacked-danger">
+                <div class="entry-title">
+                  <ion-icon name="warning"></ion-icon>
+                  <span>LÍNEA DIRECTA DE SINIESTROS</span>
+                </div>
+                <div class="entry-value">(011) 5263-0956</div>
+              </div>
+            </ion-button>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
 
-    <ion-item-group>
-      <ion-item-divider color="primary">
-        <ion-button fill="clear" color="light">Ntra Sra del Buen Viaje 1198 (1708) Moron Bs. As.</ion-button>
-      </ion-item-divider>
+    <ion-card class="office-card">
+      <ion-card-header>
+        <ion-card-title class="title-with-icon">
+          <ion-icon name="map"></ion-icon>
+          <span>Sede Moreno</span>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p class="office-address">Saavedra 108 esquina Zeballos local 7, Moreno, Bs. As.</p>
+        <ion-list lines="none" class="phones-list">
+          <ion-item>
+            <ion-button fill="clear" color="primary" (click)="onCall('02374883670')">
+              <ion-icon slot="start" name="call"></ion-icon> (0237) 488-3670
+            </ion-button>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </section>
 
-      <ion-item>
-        <ion-button fill="clear" color="primary" (click)="onCall('54306319')">
-          <ion-icon slot="start" name="call"></ion-icon> 5430 - 6319
-        </ion-button>
-      </ion-item>
-      <ion-item>
-        <ion-button fill="clear" color="primary" (click)="onCall('54306320')">
-          <ion-icon slot="start" name="call"></ion-icon> 5430 - 6320
-        </ion-button>
-      </ion-item>
-      <ion-item>
-        <ion-button fill="clear" color="primary" (click)="onCall('54337078')">
-          <ion-icon slot="start" name="call"></ion-icon> 5433 – 7078
-        </ion-button>
-      </ion-item>
-      <ion-item>
-        <ion-button fill="clear" color="primary" (click)="onCall('54337079')">
-          <ion-icon slot="start" name="call"></ion-icon> 5433 - 7079
-        </ion-button>
-      </ion-item>
-    </ion-item-group>
+  <section class="contact-section">
+    <ion-card class="info-card">
+      <ion-card-header>
+        <ion-card-title class="title-with-icon">
+          <ion-icon name="mail"></ion-icon>
+          <span>Email</span>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-button fill="clear" color="primary" (click)="onEmail('info@centroatencionmoron.com')">info@centroatencionmoron.com</ion-button>
+      </ion-card-content>
+    </ion-card>
+  </section>
 
-    <ion-item-group>
-      <ion-item-divider color="primary">
-        <ion-button fill="clear" color="light">Saavedra 107 esquina Zeballos local 7 Moreno Bs. As.</ion-button>
-      </ion-item-divider>
-      <ion-item>
-        <ion-button fill="clear" color="primary" (click)="onCall('02374883670')">
-          <ion-icon slot="start" name="call"></ion-icon> 02374883670
-        </ion-button>
-      </ion-item>
-    </ion-item-group>
-  </ion-list>
-
-  <ion-list>
-    <ion-list-header>
-      <ion-button fill="clear" color="primary">
-        <ion-icon slot="start" name="mail"></ion-icon> Email
-      </ion-button>
-    </ion-list-header>
-    <ion-item>
-      <ion-button fill="clear" color="primary" (click)="onEmail('info@centroatencionmoron.com')">info@centroatencionmoron.com</ion-button>
-    </ion-item>
-    <ion-item>
-      <ion-button fill="clear" color="primary" (click)="onEmail('infomoreno@centroatencionmoron.com')">infomoreno@centroatencionmoron.com</ion-button>
-    </ion-item>
-  </ion-list>
-
-  <ion-list>
-    <ion-list-header>
-      <ion-button fill="clear" color="primary">
-        <ion-icon slot="start" name="globe"></ion-icon> Web
-      </ion-button>
-    </ion-list-header>
-    <ion-item>
-      <ion-button fill="clear" color="primary" (click)="onWeb('http://www.centroatencionmoron.com')">www.centroatencionmoron.com</ion-button>
-    </ion-item>
-  </ion-list>
+  <section class="contact-section">
+    <ion-card class="info-card">
+      <ion-card-header>
+        <ion-card-title class="title-with-icon">
+          <ion-icon name="globe"></ion-icon>
+          <span>Web</span>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="info-entry">
+          <div class="info-label">Sitio institucional</div>
+          <ion-button fill="clear" color="primary" (click)="onWeb('https://www.centroatencionmoron.com')">https://www.centroatencionmoron.com</ion-button>
+        </div>
+        <div class="info-entry">
+          <div class="info-label">Web exclusiva clientes</div>
+          <ion-button fill="clear" color="primary" (click)="onWeb('https://seguros.centroatencionmoron.com')">https://seguros.centroatencionmoron.com</ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </section>
 </ion-content>

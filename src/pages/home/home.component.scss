@@ -21,15 +21,24 @@
     }
   }
 
-  ion-content .inner-scroll .col-home span {
+  :host ::ng-deep ion-content .inner-scroll .col-home span,
+  :host ::ng-deep ion-content .inner-scroll .col-home {
     color: #ffffff !important;
   }
 
   .col-home {
     background: var(--ion-color-primary);
+    color: #ffffff;
     border-radius: var(--app-radius);
     padding: 16px 8px !important;
     box-shadow: var(--app-shadow);
+  }
+
+  .col-home,
+  .col-home span,
+  .col-home div,
+  .col-home p {
+    color: #ffffff !important;
   }
 
   .border-top,

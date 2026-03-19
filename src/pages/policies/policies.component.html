@@ -20,19 +20,19 @@
 
       <ion-grid class="acctions no-padding-side">
         <ion-row *ngIf="policy.downloaded; else onlinePolicyActions">
-          <ion-col size="2" class="ion-text-center" (click)="onOpenPolicy(policy)">
+          <ion-col size="3" class="ion-text-center" (click)="onOpenPolicy(policy)">
             <i class="fa fa-file-text-o fa-2x"></i><div>Poliza</div>
           </ion-col>
-          <ion-col size="2" class="ion-text-center" (click)="onOpenCheckbook(policy)">
+          <ion-col size="3" class="ion-text-center" (click)="onOpenCheckbook(policy)">
             <i class="fa fa-credit-card fa-2x"></i><div>Chequera</div>
           </ion-col>
-          <ion-col size="4" class="ion-text-center" (click)="onSinister(policy)">
+          <!--<ion-col size="4" class="ion-text-center" (click)="onSinister(policy)">
             <i class="fa fa-envelope fa-2x"></i><div>Siniestro</div>
-          </ion-col>
-          <ion-col size="2" class="ion-text-center" (click)="onCall(policy.phone)">
+          </ion-col>-->
+          <ion-col size="3" class="ion-text-center" (click)="onCall(policy.phone)">
             <i class="fa fa-phone fa-2x"></i><div>Llamar</div>
           </ion-col>
-          <ion-col size="2" class="ion-text-center" (click)="onRemovePolicy(policy, position)">
+          <ion-col size="3" class="ion-text-center" (click)="onRemovePolicy(policy, position)">
             <i class="fa fa-trash fa-2x"></i><div>Borrar</div>
           </ion-col>
         </ion-row>
