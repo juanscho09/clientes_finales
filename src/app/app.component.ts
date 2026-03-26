@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Platform, AlertController, ModalController } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
+import { filter, take } from 'rxjs/operators';
 
 import { StatusBar } from '@awesome-cordova-plugins/status-bar/ngx';
 import { SplashScreen } from '@awesome-cordova-plugins/splash-screen/ngx';
@@ -94,13 +95,19 @@ export class AppComponent {
       this.onConfirmNotification(data);
     });
 
-    // 👆 CLICK EN NOTIFICACIÓN (BACKGROUND)
+    // 👆 CLICK EN NOTIFICACIÓN (BACKGROUND / APP CERRADA)
     PushNotifications.addListener('pushNotificationActionPerformed', (notification) => {
       console.log('👆 CLICK:', notification);
 
       const data: any = notification.notification.data;
 
-      this.showNewsModal(data?.newsId);
+      // Esperar a que la navegación inicial termine antes de mostrar el modal
+      this.router.events.pipe(
+        filter(event => event instanceof NavigationEnd),
+        take(1)
+      ).subscribe(() => {
+        this.showNewsModal(data?.newsId);
+      });
     });
   }
 

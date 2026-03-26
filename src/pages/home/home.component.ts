@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { IonicModule, NavController } from '@ionic/angular';
+import { IonicModule, NavController, Platform } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 //import { CallNumber } from '@ionic-native/call-number/ngx';
@@ -19,9 +19,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   currentUser: User | null = null;
   cantNewsNotRead = 0;
   newNotificationSubscription?: Subscription;
+  resumeSubscription?: Subscription;
 
   constructor(
     private navCtrl: NavController,
+    private platform: Platform,
     private callNumber: CallNumber,
     private authService: AuthService,
     private apiService: ApiService
@@ -33,11 +35,17 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.newNotificationSubscription = this.apiService.newNotification.subscribe((cant: number) => {
       this.cantNewsNotRead = cant;
     });
+
+    this.resumeSubscription = this.platform.resume.subscribe(() => {
+      this.refreshNoReadNotifications();
+    });
+
     this.refreshNoReadNotifications();
   }
 
   ngOnDestroy() {
     this.newNotificationSubscription?.unsubscribe();
+    this.resumeSubscription?.unsubscribe();
   }
 
   refreshNoReadNotifications() {
