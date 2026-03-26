@@ -10,7 +10,8 @@ export class MechanicalAssistance {
         public company: string | null = null,
         public databaseCompany: string | null = null,
         public interior: Item[] = [],
-        public exterior: Item[] = []
+        public exterior: Item[] = [],
+        public whatsapp: Item[] = []
     ) { }
 
     public static create(object: any): MechanicalAssistance {
@@ -19,6 +20,7 @@ export class MechanicalAssistance {
         mechanicalAssistance.databaseCompany = object?.databaseCompany ?? null;
         mechanicalAssistance.interior = Array.isArray(object?.interior) ? object.interior : [];
         mechanicalAssistance.exterior = Array.isArray(object?.exterior) ? object.exterior : [];
+        mechanicalAssistance.whatsapp = Array.isArray(object?.whatsapp) ? object.whatsapp : [];
         return mechanicalAssistance;
     }
 

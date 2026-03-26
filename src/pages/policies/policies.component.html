@@ -10,7 +10,20 @@
 
 <ion-content>
   <ion-card *ngFor="let policy of policies; let position = index">
-    <ion-card-header class="ion-text-center">{{ policy.company }}</ion-card-header>
+    <ion-card-header>
+      <div class="company-header">
+        <div class="company-title">{{ policy.company }}</div>
+        <button
+          *ngIf="policy.downloaded"
+          type="button"
+          class="delete-x"
+          (click)="onRemovePolicy(policy, position)"
+          aria-label="Eliminar póliza"
+        >
+          ×
+        </button>
+      </div>
+    </ion-card-header>
     <ion-card-content>
       <ul class="ul-no-style">
         <li><span class="sub-title">Poliza:</span> {{ policy.name }}</li>
@@ -20,20 +33,17 @@
 
       <ion-grid class="acctions no-padding-side">
         <ion-row *ngIf="policy.downloaded; else onlinePolicyActions">
-          <ion-col size="3" class="ion-text-center" (click)="onOpenPolicy(policy)">
+          <ion-col size="4" class="ion-text-center" (click)="onOpenPolicy(policy)">
             <i class="fa fa-file-text-o fa-2x"></i><div>Poliza</div>
           </ion-col>
-          <ion-col size="3" class="ion-text-center" (click)="onOpenCheckbook(policy)">
+          <ion-col size="4" class="ion-text-center" (click)="onOpenCheckbook(policy)">
             <i class="fa fa-credit-card fa-2x"></i><div>Chequera</div>
           </ion-col>
           <!--<ion-col size="4" class="ion-text-center" (click)="onSinister(policy)">
             <i class="fa fa-envelope fa-2x"></i><div>Siniestro</div>
           </ion-col>-->
-          <ion-col size="3" class="ion-text-center" (click)="onCall(policy.phone)">
-            <i class="fa fa-phone fa-2x"></i><div>Llamar</div>
-          </ion-col>
-          <ion-col size="3" class="ion-text-center" (click)="onRemovePolicy(policy, position)">
-            <i class="fa fa-trash fa-2x"></i><div>Borrar</div>
+          <ion-col size="4" class="ion-text-center" (click)="onCall(policy.phone)">
+            <i class="fa fa-phone fa-2x"></i><div>Llamar Grúa</div>
           </ion-col>
         </ion-row>
 

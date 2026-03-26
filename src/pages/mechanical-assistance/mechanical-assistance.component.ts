@@ -14,7 +14,8 @@ import { User } from '../../models/user.model';
   selector: 'app-mechanical-assistance',
   standalone: true,
   imports: [IonicModule, CommonModule],
-  templateUrl: './mechanical-assistance.component.html'
+  templateUrl: './mechanical-assistance.component.html',
+  styleUrls: ['./mechanical-assistance.component.scss']
 })
 export class MechanicalAssistanceComponent implements OnInit, OnDestroy {
   mechanicalAssistanceSubscription?: Subscription;
@@ -55,6 +56,17 @@ export class MechanicalAssistanceComponent implements OnInit, OnDestroy {
       // no throw, solo loguear
       console.warn('Call error');
     }
+  }
+
+  onOpenWhatsApp(phone: string) {
+    const cleanPhone = String(phone || '').replace(/\D/g, '');
+    if (!cleanPhone) {
+      this.showAlert('CAM', 'No hay un número válido para WhatsApp');
+      return;
+    }
+
+    const url = `https://wa.me/${cleanPhone}`;
+    window.open(url, '_blank');
   }
 
   async showAlert(title: string, message: string, buttons: any[] = ['OK']) {

@@ -11,7 +11,8 @@ import { CallNumber } from '@awesome-cordova-plugins/call-number/ngx';
   selector: 'app-policies',
   standalone: true,
   imports: [IonicModule, CommonModule],
-  templateUrl: './policies.component.html'
+  templateUrl: './policies.component.html',
+  styleUrls: ['./policies.component.scss']
 })
 export class PoliciesComponent implements OnInit {
   policies: Policy[] = [];
